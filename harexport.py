@@ -27,6 +27,7 @@ def parseharline(line):
     r['transfersize']=line['response']['_transferSize']
     r['contenttype']=line['response']['content']['mimeType']
     r['url']=line['request']['url']
+    r['domain']=line['request']['url'].split('/')[2]
     r['protocol']=line['response']['httpVersion']
     return r
 
@@ -56,7 +57,7 @@ def main():
         print 'Usage:\n%s file.har' % sys.argv[0]
         sys.exit(1)
     data=parsehar(sys.argv[1])
-    headers=["url", "contenttype", "transfersize", "size", "contentencoding", "protocol", "servertime", "transfertime", "reqcookies", "expires", "lastmodified", "etag", "cachecontrol"]
+    headers=["domain", "url", "contenttype", "transfersize", "size", "contentencoding", "protocol", "servertime", "transfertime", "reqcookies", "expires", "lastmodified", "etag", "cachecontrol"]
     csv=buildcsv(headers,data[1])
     print csv
 
