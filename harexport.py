@@ -29,6 +29,7 @@ def parseharline(line):
     r['url']=line['request']['url']
     r['domain']=line['request']['url'].split('/')[2]
     r['protocol']=line['response']['httpVersion']
+    r['status']=line['response']['status']
     return r
 
 def parsehar(filename):
