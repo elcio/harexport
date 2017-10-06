@@ -19,6 +19,7 @@ def parseharline(line):
             line['timings'][t]=0
     r['transfertime']=line['timings']['send']+line['timings']['receive']
     r['servertime']=sum(line['timings'].values())-r['transfertime']
+    r['starttime']=line['time']
     r['reqcookies']=bool(line['request']['cookies'])
     headers=dict([(i['name'].lower(),i['value']) for i in line['response']['headers']])
     for h in ('expires','cache-control','etag','last-modified','content-encoding'):
